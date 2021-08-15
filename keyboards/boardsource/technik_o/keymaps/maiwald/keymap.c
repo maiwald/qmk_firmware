@@ -72,6 +72,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define MY_I      RSFT_T(DE_I)
 #define MY_LSFT   OSM(MOD_LSFT)
 #define MY_RSFT   OSM(MOD_RSFT)
+#define MY_4      MT(MOD_LSFT, DE_4)
 
 #define EXT_SPC   LT(_EXTEND, KC_SPC)
 #define SFT_ZERO  MT(MOD_LSFT, DE_0)
@@ -92,7 +93,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_EXTEND] = LAYOUT_ortho_4x12(
       _______, TMUX_3,  DE_7,    DE_8,    DE_9,     DE_PLUS, KC_HOME, KC_PGUP, VIM_ALT, XXXXXXX, KC_DEL,  XXXXXXX,
-      _______, TMUX_2,  DE_4,    DE_5,    DE_6,     DE_MINS, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_BSPC, XXXXXXX,
+      _______, TMUX_2,  MY_4,    DE_5,    DE_6,     DE_MINS, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_BSPC, XXXXXXX,
       _______, TMUX_1,  DE_1,    DE_2,    DE_3,     XXXXXXX, KC_END,  KC_PGDN, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
       RGB_TOG, _______, _______, _______, SFT_ZERO, _______, _______, _______, _______, _______, _______, _______
       ),
