@@ -13,57 +13,6 @@ enum custom_keycodes {
   TMUX_1,
   TMUX_2,
   TMUX_3,
-  TMUX_4,
-  TMUX_5
-};
-
-enum {
-  TD_GER_ALT,
-};
-
-enum {
-  SINGLE_TAP = 1,
-  SINGLE_HOLD,
-};
-
-int cur_dance(qk_tap_dance_state_t *state) {
-  if (state->count == 1) {
-    if (state->pressed) return SINGLE_HOLD;
-    else return SINGLE_TAP;
-  }
-
-  return 8;
-}
-
-// Create an instance of 'tap' for the 'x' tap dance.
-static uint8_t gertap_state = 0;
-
-void gertap_finished(qk_tap_dance_state_t *state, void *user_data) {
-  gertap_state = cur_dance(state);
-  switch (gertap_state) {
-    case SINGLE_TAP:
-      set_oneshot_layer(_GERMAN, ONESHOT_START);
-      clear_oneshot_layer_state(ONESHOT_PRESSED);
-      break;
-    case SINGLE_HOLD:
-      register_code(KC_RALT);
-      break;
-  }
-}
-
-void gertap_reset(qk_tap_dance_state_t *state, void *user_data) {
-  switch (gertap_state) {
-    case SINGLE_TAP:
-      break;
-    case SINGLE_HOLD:
-      unregister_code(KC_RALT);
-      break;
-  }
-  gertap_state = 0;
-}
-
-qk_tap_dance_action_t tap_dance_actions[] = {
-  [TD_GER_ALT] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, gertap_finished, gertap_reset),
 };
 
 #define MY_A      LCTL_T(DE_A)
@@ -77,10 +26,24 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define EXT_SPC   LT(_EXTEND, KC_SPC)
 #define SFT_ZERO  MT(MOD_LSFT, DE_0)
 #define OSL_SYM   OSL(_SYMBOLS)
-#define MY_ALT    TD(TD_GER_ALT)
+#define OSL_GER   OSL(_GERMAN)
 
 #define VIM_ALT   C(DE_6)
 #define MY_SCSH   G(S(KC_4))
+
+enum combos {
+  WF_BSPC,
+  UY_ENT
+};
+
+const uint16_t PROGMEM wf_combo[] = {DE_W, DE_F, COMBO_END};
+const uint16_t PROGMEM uy_combo[] = {DE_U, DE_Y, COMBO_END};
+
+combo_t key_combos[COMBO_COUNT] = {
+  [WF_BSPC] = COMBO(wf_combo, KC_BSPC),
+  [UY_ENT] = COMBO(uy_combo, KC_ENT)
+};
+
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -88,13 +51,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_TAB,  DE_Q,    DE_W,    DE_F,    DE_P,    DE_B,    DE_J,    DE_L,    DE_U,    DE_Y,    DE_QUOT, KC_BSPC,
       KC_ESC,  MY_A,    MY_R,    DE_S,    DE_T,    DE_G,    DE_M,    DE_N,    DE_E,    MY_I,    MY_O,    KC_ENT,
       KC_LSFT, DE_Z,    DE_X,    DE_C,    DE_D,    DE_V,    DE_K,    DE_H,    DE_COMM, DE_DOT,  MY_SLSH, KC_RSFT,
-      XXXXXXX, KC_LALT, KC_LGUI, OSL_SYM, KC_BSPC, MY_LSFT, MY_RSFT, EXT_SPC, OSL_SYM, KC_RGUI, MY_ALT,  XXXXXXX
+      XXXXXXX, XXXXXXX, KC_LALT, KC_LGUI, KC_LSFT, OSL_SYM, OSL_SYM, EXT_SPC, OSL_GER, XXXXXXX, XXXXXXX, XXXXXXX
       ),
 
   [_EXTEND] = LAYOUT_ortho_4x12(
-      _______, TMUX_3,  DE_7,    DE_8,    DE_9,     DE_PLUS, KC_HOME, KC_PGUP, VIM_ALT, XXXXXXX, KC_DEL,  XXXXXXX,
-      _______, TMUX_2,  MY_4,    DE_5,    DE_6,     DE_MINS, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_BSPC, XXXXXXX,
-      _______, TMUX_1,  DE_1,    DE_2,    DE_3,     XXXXXXX, KC_END,  KC_PGDN, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+      _______, TMUX_3,  DE_7,    DE_8,    DE_9,     DE_PLUS, XXXXXXX, XXXXXXX, VIM_ALT, XXXXXXX, XXXXXXX, RESET,
+      _______, TMUX_2,  MY_4,    DE_5,    DE_6,     DE_MINS, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, XXXXXXX,
+      _______, TMUX_1,  DE_1,    DE_2,    DE_3,     XXXXXXX, XXXXXXX, XXXXXXX, DE_COMM, DE_DOT,  XXXXXXX, XXXXXXX,
       RGB_TOG, _______, _______, _______, SFT_ZERO, _______, _______, _______, _______, _______, _______, _______
       ),
 
@@ -106,9 +69,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       ),
 
   [_GERMAN] = LAYOUT_ortho_4x12(
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, DE_UDIA, _______, _______, _______,
       _______, DE_ADIA, _______, DE_SS,   _______, _______, _______, _______, _______, _______, DE_ODIA, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
       )
 };
@@ -142,18 +105,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         tap_code16(C(KC_B));
         tap_code16(KC_3);
-      }
-      return false;
-    case TMUX_4:
-      if (record->event.pressed) {
-        tap_code16(C(KC_B));
-        tap_code16(KC_4);
-      }
-      return false;
-    case TMUX_5:
-      if (record->event.pressed) {
-        tap_code16(C(KC_B));
-        tap_code16(KC_5);
       }
       return false;
 
