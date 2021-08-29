@@ -21,7 +21,6 @@ enum custom_keycodes {
 #define MY_R      LSFT_T(DE_R)
 #define MY_I      RSFT_T(DE_I)
 #define MY_LSFT   OSM(MOD_LSFT)
-#define MY_RSFT   OSM(MOD_RSFT)
 #define MY_4      MT(MOD_LSFT, DE_4)
 
 #define EXT_SPC   LT(_EXTEND, KC_SPC)
@@ -50,10 +49,10 @@ combo_t key_combos[COMBO_COUNT] = {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_COLEMAK] = LAYOUT_ortho_4x12(
-      KC_TAB,  DE_Q,    DE_W,    DE_F,    DE_P,    DE_B,    DE_J,    DE_L,    DE_U,    DE_Y,    DE_QUOT, KC_BSPC,
+      KC_TAB,  DE_Q,    DE_W,    DE_F,    DE_P,    DE_B,    DE_J,    DE_L,    DE_U,    DE_Y,    KC_DEL,  KC_BSPC,
       KC_ESC,  MY_A,    MY_R,    DE_S,    DE_T,    DE_G,    DE_M,    DE_N,    DE_E,    MY_I,    MY_O,    KC_ENT,
       KC_LSFT, DE_Z,    DE_X,    DE_C,    DE_D,    DE_V,    DE_K,    DE_H,    DE_COMM, DE_DOT,  MY_SLSH, KC_RSFT,
-      XXXXXXX, XXXXXXX, KC_LALT, KC_LGUI, KC_LSFT, OSL_SYM, OSL_SYM, EXT_SPC, OSL_GER, MEDIA,   XXXXXXX, XXXXXXX
+      XXXXXXX, XXXXXXX, KC_LALT, KC_LGUI, MY_LSFT, OSL_SYM, OSL_SYM, EXT_SPC, OSL_GER, MEDIA,   XXXXXXX, XXXXXXX
       ),
 
   [_EXTEND] = LAYOUT_ortho_4x12(
