@@ -35,7 +35,7 @@ enum custom_keycodes {
 #define MY_SCSH   G(S(KC_4))
 
 enum combos {
-  WF_BSPC,
+  WF_ESC,
   UY_ENT
 };
 
@@ -43,7 +43,7 @@ const uint16_t PROGMEM wf_combo[] = {DE_W, DE_F, COMBO_END};
 const uint16_t PROGMEM uy_combo[] = {DE_U, DE_Y, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
-  [WF_BSPC] = COMBO(wf_combo, KC_BSPC),
+  [WF_ESC] = COMBO(wf_combo, KC_ESC),
   [UY_ENT] = COMBO(uy_combo, KC_ENT)
 };
 
@@ -51,16 +51,16 @@ combo_t key_combos[COMBO_COUNT] = {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_COLEMAK] = LAYOUT_ortho_4x12(
-      KC_TAB,  DE_Q,    DE_W,    DE_F,    DE_P,    DE_B,     DE_J,    DE_L,    DE_U,    DE_Y,    KC_DEL,  KC_BSPC,
-      KC_ESC,  MY_A,    MY_R,    DE_S,    DE_T,    DE_G,     DE_M,    DE_N,    DE_E,    MY_I,    MY_O,    KC_ENT,
-      KC_LSFT, DE_Z,    DE_X,    DE_C,    DE_D,    DE_V,     DE_K,    DE_H,    DE_COMM, DE_DOT,  MY_SLSH, KC_RSFT,
+      KC_TAB,  DE_Q,    DE_W,    DE_F,    DE_P,    DE_B,     DE_J,    DE_L,    DE_U,    DE_Y,    KC_TAB,  XXXXXXX,
+      KC_ESC,  MY_A,    MY_R,    DE_S,    DE_T,    DE_G,     DE_M,    DE_N,    DE_E,    MY_I,    MY_O,    XXXXXXX,
+      XXXXXXX, DE_Z,    DE_X,    DE_C,    DE_D,    DE_V,     DE_K,    DE_H,    DE_COMM, DE_DOT,  MY_SLSH, XXXXXXX,
       XXXXXXX, XXXXXXX, KC_LALT, KC_LGUI, MY_LSFT, SYM_BSPC, SYM_ENT, EXT_SPC, OSL_GER, MEDIA,   XXXXXXX, XXXXXXX
       ),
 
   [_EXTEND] = LAYOUT_ortho_4x12(
-      _______, TMUX_3,  DE_7,    DE_8,    DE_9,     DE_PLUS, XXXXXXX, XXXXXXX, VIM_ALT, XXXXXXX, XXXXXXX, XXXXXXX,
-      _______, TMUX_2,  MY_4,    DE_5,    DE_6,     DE_MINS, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, XXXXXXX,
-      _______, TMUX_1,  DE_1,    DE_2,    DE_3,     XXXXXXX, XXXXXXX, XXXXXXX, DE_COMM, DE_DOT,  XXXXXXX, RESET,
+      XXXXXXX, TMUX_3,  DE_7,    DE_8,    DE_9,     DE_PLUS, XXXXXXX, XXXXXXX, VIM_ALT, XXXXXXX, XXXXXXX, XXXXXXX,
+      XXXXXXX, TMUX_2,  MY_4,    DE_5,    DE_6,     DE_MINS, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, XXXXXXX,
+      XXXXXXX, TMUX_1,  DE_1,    DE_2,    DE_3,     XXXXXXX, XXXXXXX, XXXXXXX, DE_COMM, DE_DOT,  XXXXXXX, RESET,
       RGB_TOG, _______, _______, _______, SFT_ZERO, _______, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX
       ),
 
