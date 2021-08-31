@@ -16,20 +16,19 @@ enum custom_keycodes {
   TMUX_3,
 };
 
-#define MY_A      LCTL_T(DE_A)
-#define MY_O      RCTL_T(DE_O)
-#define MY_R      LSFT_T(DE_R)
-#define MY_I      RSFT_T(DE_I)
-#define MY_LSFT   OSM(MOD_LSFT)
-#define MY_4      MT(MOD_LSFT, DE_4)
+#define HOME_A    LCTL_T(DE_A)
+#define HOME_O    RCTL_T(DE_O)
+#define HOME_R    LSFT_T(DE_R)
+#define HOME_I    RSFT_T(DE_I)
+#define HOME_4    MT(MOD_LSFT, DE_4)
 
 #define EXT_SPC   LT(_EXTEND, KC_SPC)
+#define MEDIA     MO(_MEDIA)
+#define OSL_GER   OSL(_GERMAN)
+#define OSM_SFT   OSM(MOD_LSFT)
 #define SFT_ZERO  MT(MOD_LSFT, DE_0)
-#define OSL_SYM   OSL(_SYMBOLS)
 #define SYM_BSPC  LT(_SYMBOLS, KC_BSPC)
 #define SYM_ENT   LT(_SYMBOLS, KC_ENT)
-#define OSL_GER   OSL(_GERMAN)
-#define MEDIA     MO(_MEDIA)
 
 #define VIM_ALT   C(DE_6)
 #define MY_SCSH   G(S(KC_4))
@@ -52,16 +51,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_COLEMAK] = LAYOUT_ortho_4x12(
       KC_TAB,  DE_Q,    DE_W,    DE_F,    DE_P,    DE_B,     DE_J,    DE_L,    DE_U,    DE_Y,    KC_TAB,  XXXXXXX,
-      KC_ESC,  MY_A,    MY_R,    DE_S,    DE_T,    DE_G,     DE_M,    DE_N,    DE_E,    MY_I,    MY_O,    XXXXXXX,
-      XXXXXXX, DE_Z,    DE_X,    DE_C,    DE_D,    DE_V,     DE_K,    DE_H,    DE_COMM, DE_DOT,  MY_SLSH, XXXXXXX,
-      XXXXXXX, XXXXXXX, KC_LALT, KC_LGUI, MY_LSFT, SYM_BSPC, SYM_ENT, EXT_SPC, OSL_GER, MEDIA,   XXXXXXX, XXXXXXX
+      KC_ESC,  HOME_A,  HOME_R,  DE_S,    DE_T,    DE_G,     DE_M,    DE_N,    DE_E,    HOME_I,  HOME_O,  KC_ENT,
+      KC_LSFT, DE_Z,    DE_X,    DE_C,    DE_D,    DE_V,     DE_K,    DE_H,    DE_COMM, DE_DOT,  MY_SLSH, KC_RSFT,
+      XXXXXXX, XXXXXXX, KC_LALT, KC_LGUI, OSM_SFT, SYM_BSPC, SYM_ENT, EXT_SPC, OSL_GER, MEDIA,   XXXXXXX, XXXXXXX
       ),
 
   [_EXTEND] = LAYOUT_ortho_4x12(
-      XXXXXXX, TMUX_3,  DE_7,    DE_8,    DE_9,     DE_PLUS, XXXXXXX, XXXXXXX, VIM_ALT, XXXXXXX, XXXXXXX, XXXXXXX,
-      XXXXXXX, TMUX_2,  MY_4,    DE_5,    DE_6,     DE_MINS, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, XXXXXXX,
+      XXXXXXX, TMUX_3,  DE_7,    DE_8,    DE_9,     DE_PLUS, XXXXXXX, XXXXXXX, VIM_ALT, XXXXXXX, XXXXXXX, MY_SCSH,
+      XXXXXXX, TMUX_2,  HOME_4,  DE_5,    DE_6,     DE_MINS, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, XXXXXXX,
       XXXXXXX, TMUX_1,  DE_1,    DE_2,    DE_3,     XXXXXXX, XXXXXXX, XXXXXXX, DE_COMM, DE_DOT,  XXXXXXX, RESET,
-      RGB_TOG, _______, _______, _______, SFT_ZERO, _______, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX
+      XXXXXXX, _______, _______, _______, SFT_ZERO, _______, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX
       ),
 
   [_SYMBOLS] = LAYOUT_ortho_4x12(
@@ -82,7 +81,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_BRIU, RGB_VAI, XXXXXXX, RGB_MOD,  RGB_HUI, RGB_SAI, XXXXXXX, XXXXXXX, KC_MPRV, KC_MPLY, KC_MNXT, KC_VOLU,
       KC_BRID, RGB_VAD, XXXXXXX, RGB_RMOD, RGB_HUD, RGB_SAD, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_VOLD,
       XXXXXXX, XXXXXXX, XXXXXXX, RGB_M_P,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+      RGB_TOG, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
       )
 
 };
@@ -123,7 +122,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case KC_NO:
       /* Always cancel one-shot layer when another key gets pressed */
       if (record->event.pressed && is_oneshot_layer_active())
-      clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
+        clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
       return true;
     case MY_SLSH:
       if (record->event.pressed) {
