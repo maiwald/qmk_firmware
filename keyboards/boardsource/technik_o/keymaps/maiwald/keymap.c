@@ -34,16 +34,16 @@ enum custom_keycodes {
 #define MY_SCSH   G(S(KC_4))
 
 enum combos {
-  WF_ESC,
-  UY_ENT
+  FP_ESC,
+  LU_BSPC
 };
 
-const uint16_t PROGMEM wf_combo[] = {DE_W, DE_F, COMBO_END};
-const uint16_t PROGMEM uy_combo[] = {DE_U, DE_Y, COMBO_END};
+const uint16_t PROGMEM fp_combo[] = {DE_F, DE_P, COMBO_END};
+const uint16_t PROGMEM lu_combo[] = {DE_L, DE_U, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
-  [WF_ESC] = COMBO(wf_combo, KC_ESC),
-  [UY_ENT] = COMBO(uy_combo, KC_ENT)
+  [FP_ESC] = COMBO(fp_combo, KC_ESC),
+  [LU_BSPC] = COMBO(lu_combo, KC_BSPC)
 };
 
 
