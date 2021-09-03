@@ -50,8 +50,8 @@ combo_t key_combos[COMBO_COUNT] = {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_COLEMAK] = LAYOUT_ortho_4x12(
-      KC_TAB,  DE_Q,    DE_W,    DE_F,    DE_P,    DE_B,     DE_J,    DE_L,    DE_U,    DE_Y,    KC_TAB,  XXXXXXX,
-      KC_ESC,  HOME_A,  HOME_R,  DE_S,    DE_T,    DE_G,     DE_M,    DE_N,    DE_E,    HOME_I,  HOME_O,  KC_ENT,
+      KC_TAB,  DE_Q,    DE_W,    DE_F,    DE_P,    DE_B,     DE_J,    DE_L,    DE_U,    DE_Y,    KC_TAB,  KC_VOLU,
+      KC_ESC,  HOME_A,  HOME_R,  DE_S,    DE_T,    DE_G,     DE_M,    DE_N,    DE_E,    HOME_I,  HOME_O,  KC_VOLD,
       KC_LSFT, DE_Z,    DE_X,    DE_C,    DE_D,    DE_V,     DE_K,    DE_H,    DE_COMM, DE_DOT,  MY_SLSH, KC_RSFT,
       XXXXXXX, XXXXXXX, KC_LALT, KC_LGUI, OSM_SFT, SYM_BSPC, SYM_ENT, EXT_SPC, OSL_GER, MEDIA,   XXXXXXX, XXXXXXX
       ),
