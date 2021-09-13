@@ -33,20 +33,6 @@ enum custom_keycodes {
 #define VIM_ALT   C(DE_6)
 #define MY_SCSH   G(S(KC_4))
 
-enum combos {
-  FP_ESC,
-  LU_BSPC
-};
-
-const uint16_t PROGMEM fp_combo[] = {DE_F, DE_P, COMBO_END};
-const uint16_t PROGMEM lu_combo[] = {DE_L, DE_U, COMBO_END};
-
-combo_t key_combos[COMBO_COUNT] = {
-  [FP_ESC] = COMBO(fp_combo, KC_ESC),
-  [LU_BSPC] = COMBO(lu_combo, KC_BSPC)
-};
-
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_COLEMAK] = LAYOUT_ortho_4x12(
