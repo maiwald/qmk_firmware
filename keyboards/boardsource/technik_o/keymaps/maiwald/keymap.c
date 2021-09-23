@@ -82,8 +82,6 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  uint16_t one_shot_mod_state = get_oneshot_mods();
-
   switch (keycode) {
     case TMUX_1:
       if (record->event.pressed) {
@@ -103,16 +101,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         tap_code16(KC_3);
       }
       return false;
-
-    case KC_TRNS:
-    case KC_NO:
-      /* Always cancel one-shot layer when another key gets pressed */
-      if (record->event.pressed && is_oneshot_layer_active())
-        clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
-      return true;
     case MY_SLSH:
       if (record->event.pressed) {
-        if ((get_mods() | one_shot_mod_state) & MOD_MASK_SHIFT) {
+        if ((get_mods() | get_oneshot_mods()) & MOD_MASK_SHIFT) {
           tap_code16(DE_QUES);
         } else {
           tap_code16(DE_SLSH);
@@ -120,7 +111,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
     case KC_ESC:
-      if (one_shot_mod_state) {
+      if (get_oneshot_mods()) {
         clear_oneshot_mods();
         return false;
       } else {
