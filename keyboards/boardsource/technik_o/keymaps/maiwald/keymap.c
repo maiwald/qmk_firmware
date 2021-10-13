@@ -25,6 +25,7 @@ enum custom_keycodes {
 #define EXT_SPC   LT(_EXTEND, KC_SPC)
 #define MEDIA     MO(_MEDIA)
 #define OSL_GER   OSL(_GERMAN)
+#define OSL_SYM   OSL(_SYMBOLS)
 #define OSM_SFT   OSM(MOD_LSFT)
 #define SFT_ZERO  MT(MOD_LSFT, DE_0)
 #define SYM_BSPC  LT(_SYMBOLS, KC_BSPC)
@@ -36,23 +37,23 @@ enum custom_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_COLEMAK] = LAYOUT_ortho_4x12(
-      KC_TAB,  DE_Q,    DE_W,    DE_F,    DE_P,    DE_B,     DE_J,    DE_L,    DE_U,    DE_Y,    KC_TAB,  KC_VOLU,
-      KC_ESC,  HOME_A,  HOME_R,  DE_S,    DE_T,    DE_G,     DE_M,    DE_N,    DE_E,    HOME_I,  HOME_O,  KC_VOLD,
-      KC_LSFT, DE_Z,    DE_X,    DE_C,    DE_D,    DE_V,     DE_K,    DE_H,    DE_COMM, DE_DOT,  MY_SLSH, KC_RSFT,
-      XXXXXXX, XXXXXXX, KC_LALT, KC_LGUI, OSM_SFT, SYM_BSPC, SYM_ENT, EXT_SPC, OSL_GER, MEDIA,   XXXXXXX, XXXXXXX
+      KC_TAB,  DE_Q,    DE_W,    DE_F,    DE_P,    DE_B,    DE_J,    DE_L,    DE_U,    DE_Y,   KC_TAB,  KC_BSPC,
+      KC_ESC,  HOME_A,  HOME_R,  DE_S,    DE_T,    DE_G,    DE_M,    DE_N,    DE_E,    HOME_I, HOME_O,  KC_ENT,
+      KC_LSFT, DE_Z,    DE_X,    DE_C,    DE_D,    DE_V,    DE_K,    DE_H,    DE_COMM, DE_DOT, MY_SLSH, KC_RSFT,
+      XXXXXXX, XXXXXXX, KC_LALT, KC_LGUI, OSM_SFT, OSL_SYM, OSL_SYM, EXT_SPC, OSL_GER, MEDIA,  XXXXXXX, XXXXXXX
       ),
 
   [_EXTEND] = LAYOUT_ortho_4x12(
       XXXXXXX, TMUX_3,  DE_7,    DE_8,    DE_9,     DE_PLUS, XXXXXXX, XXXXXXX, VIM_ALT, XXXXXXX, XXXXXXX, MY_SCSH,
       XXXXXXX, TMUX_2,  HOME_4,  DE_5,    DE_6,     DE_MINS, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, XXXXXXX,
       XXXXXXX, TMUX_1,  DE_1,    DE_2,    DE_3,     XXXXXXX, XXXXXXX, XXXXXXX, DE_COMM, DE_DOT,  XXXXXXX, RESET,
-      XXXXXXX, _______, _______, _______, SFT_ZERO, _______, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX
+      XXXXXXX, XXXXXXX, _______, _______, SFT_ZERO, _______, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX
       ),
 
   [_SYMBOLS] = LAYOUT_ortho_4x12(
-      XXXXXXX, DE_EXLM, DE_LABK, DE_AT,   DE_RABK, DE_PLUS, DE_CIRC, DE_LBRC, DE_UNDS, DE_RBRC, DE_EURO, XXXXXXX,
-      XXXXXXX, DE_BSLS, DE_LPRN, DE_DQUO, DE_RPRN, DE_MINS, DE_PERC, DE_LCBR, DE_EQL,  DE_RCBR, DE_PIPE, XXXXXXX,
-      XXXXXXX, XXXXXXX, DE_TILD, DE_QUOT, DE_HASH, DE_DLR,  DE_GRV,  DE_AMPR, DE_ASTR, DE_COLN, DE_QUES, XXXXXXX,
+      _______, DE_EXLM, DE_LABK, DE_AT,   DE_RABK, DE_PLUS, DE_CIRC, DE_LBRC, DE_UNDS, DE_RBRC, DE_EURO, _______,
+      _______, DE_BSLS, DE_LPRN, DE_DQUO, DE_RPRN, DE_MINS, DE_PERC, DE_LCBR, DE_EQL,  DE_RCBR, DE_PIPE, _______,
+      _______, XXXXXXX, DE_TILD, DE_QUOT, DE_HASH, DE_DLR,  DE_GRV,  DE_AMPR, DE_ASTR, DE_COLN, DE_QUES, _______,
       XXXXXXX, XXXXXXX, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
       ),
 
