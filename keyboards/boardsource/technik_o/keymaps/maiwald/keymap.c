@@ -3,9 +3,11 @@
 
 enum layers {
   _COLEMAK = 0,
+  _COLEMAK_GERMAN,
+  _PUQ,
+  _PUQ_GERMAN,
   _EXTEND,
   _SYMBOLS,
-  _GERMAN,
   _MEDIA
 };
 
@@ -16,16 +18,26 @@ enum custom_keycodes {
   TMUX_3,
 };
 
-#define HOME_A    LCTL_T(DE_A)
-#define HOME_O    RCTL_T(DE_O)
-#define HOME_R    LSFT_T(DE_R)
-#define HOME_I    RSFT_T(DE_I)
-#define HOME_4    MT(MOD_LSFT, DE_4)
+// COLEMAK KEYS
+#define COL_SET   DF(_COLEMAK)
+#define COL_A     LCTL_T(DE_A)
+#define COL_R     LSFT_T(DE_R)
+#define COL_I     RSFT_T(DE_I)
+#define COL_O     RCTL_T(DE_O)
+#define COL_GER   OSL(_COLEMAK_GERMAN)
+
+// PUQ KEYS
+#define PUQ_SET   DF(_PUQ)
+#define PUQ_H     LCTL_T(DE_H)
+#define PUQ_I     LSFT_T(DE_I)
+#define PUQ_N     RSFT_T(DE_N)
+#define PUQ_S     RCTL_T(DE_S)
+#define PUQ_GER   OSL(_PUQ_GERMAN)
 
 #define EXT_SPC   LT(_EXTEND, KC_SPC)
+#define HOME_4    MT(MOD_LSFT, DE_4)
 #define MEDIA     MO(_MEDIA)
 #define SYMBOLS   MO(_SYMBOLS)
-#define OSL_GER   OSL(_GERMAN)
 #define OSM_SFT   OSM(MOD_LSFT)
 #define SFT_ZERO  MT(MOD_LSFT, DE_0)
 #define SYM_BSPC  LT(_SYMBOLS, KC_BSPC)
@@ -38,9 +50,30 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_COLEMAK] = LAYOUT_ortho_4x12(
       KC_TAB,  DE_Q,    DE_W,    DE_F,    DE_P,    DE_B,    DE_J,    DE_L,    DE_U,    DE_Y,   KC_TAB,  KC_BSPC,
-      KC_ESC,  HOME_A,  HOME_R,  DE_S,    DE_T,    DE_G,    DE_M,    DE_N,    DE_E,    HOME_I, HOME_O,  KC_ENT,
+      KC_ESC,  COL_A,   COL_R,   DE_S,    DE_T,    DE_G,    DE_M,    DE_N,    DE_E,    COL_I,  COL_O,   KC_ENT,
       KC_LSFT, DE_Z,    DE_X,    DE_C,    DE_D,    DE_V,    DE_K,    DE_H,    DE_COMM, DE_DOT, MY_SLSH, KC_RSFT,
-      KC_LCTL, XXXXXXX, KC_LALT, KC_LGUI, OSM_SFT, SYMBOLS, SYMBOLS, EXT_SPC, OSL_GER, MEDIA,  XXXXXXX, XXXXXXX
+      KC_LCTL, XXXXXXX, KC_LALT, KC_LGUI, OSM_SFT, SYMBOLS, SYMBOLS, EXT_SPC, COL_GER, MEDIA,  XXXXXXX, XXXXXXX
+      ),
+
+  [_PUQ] = LAYOUT_ortho_4x12(
+      _______, DE_P,    DE_U,    PUQ_GER, DE_COMM, DE_Q,    DE_G,    DE_C,    DE_L,    DE_M,    DE_F,    _______,
+      _______, PUQ_H,   PUQ_I,   DE_E,    DE_A,    DE_O,    DE_D,    DE_T,    DE_R,    PUQ_N,   PUQ_S,   _______,
+      _______, DE_K,    DE_Y,    DE_DOT,  MY_SLSH, DE_X,    DE_J,    DE_V,    DE_W,    DE_B,    DE_Z,    _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, XXXXXXX, _______, _______, _______
+      ),
+
+  [_COLEMAK_GERMAN] = LAYOUT_ortho_4x12(
+      _______, _______, _______, _______, _______, _______, _______, _______, DE_UDIA, _______, _______, _______,
+      _______, DE_ADIA, _______, DE_SS,   _______, _______, _______, _______, _______, _______, DE_ODIA, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+      ),
+
+  [_PUQ_GERMAN] = LAYOUT_ortho_4x12(
+      _______, _______, DE_UDIA, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, DE_ADIA, DE_ODIA, _______, _______, _______, _______, DE_SS,   _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
       ),
 
   [_EXTEND] = LAYOUT_ortho_4x12(
@@ -57,17 +90,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       XXXXXXX, XXXXXXX, _______, _______, _______, KC_BSPC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
       ),
 
-  [_GERMAN] = LAYOUT_ortho_4x12(
-      _______, _______, _______, _______, _______, _______, _______, _______, DE_UDIA, _______, _______, _______,
-      _______, DE_ADIA, _______, DE_SS,   _______, _______, _______, _______, _______, _______, DE_ODIA, _______,
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
-      ),
-
   [_MEDIA] = LAYOUT_ortho_4x12(
       KC_BRIU, RGB_VAI, XXXXXXX, RGB_MOD,  RGB_HUI, RGB_SAI, XXXXXXX, XXXXXXX, KC_MPRV, KC_MPLY, KC_MNXT, KC_VOLU,
       KC_BRID, RGB_VAD, XXXXXXX, RGB_RMOD, RGB_HUD, RGB_SAD, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_VOLD,
-      XXXXXXX, XXXXXXX, XXXXXXX, RGB_M_P,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+      XXXXXXX, XXXXXXX, XXXXXXX, RGB_M_P,  XXXXXXX, XXXXXXX, COL_SET, PUQ_SET, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
       RGB_TOG, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
       )
 
