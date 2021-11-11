@@ -77,8 +77,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       ),
 
   [_EXTEND] = LAYOUT_ortho_4x12(
-      XXXXXXX, TMUX_3,  DE_7,    DE_8,    DE_9,     DE_PLUS, XXXXXXX, XXXXXXX, VIM_ALT, XXXXXXX, XXXXXXX, MY_SCSH,
-      XXXXXXX, TMUX_2,  HOME_4,  DE_5,    DE_6,     DE_MINS, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, XXXXXXX,
+      XXXXXXX, TMUX_3,  DE_7,    DE_8,    DE_9,     DE_PLUS, XXXXXXX, XXXXXXX, VIM_ALT, XXXXXXX, MY_SCSH, _______,
+      XXXXXXX, TMUX_2,  HOME_4,  DE_5,    DE_6,     DE_MINS, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, _______,
       XXXXXXX, TMUX_1,  DE_1,    DE_2,    DE_3,     XXXXXXX, XXXXXXX, XXXXXXX, DE_COMM, DE_DOT,  XXXXXXX, RESET,
       XXXXXXX, XXXXXXX, _______, _______, SFT_ZERO, KC_BSPC, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX
       ),
