@@ -27,7 +27,7 @@ enum {
   SINGLE_HOLD,
 };
 
-int cur_dance(qk_tap_dance_state_t *state) {
+uint8_t cur_dance(qk_tap_dance_state_t *state) {
   if (state->count == 1) {
     if (state->pressed) return SINGLE_HOLD;
     else return SINGLE_TAP;
@@ -94,7 +94,7 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_COLEMAK] = LAYOUT(
-      DE_GRV,  DE_1, DE_2, DE_3, DE_4,   DE_5,                                        DE_6,    DE_7,   DE_8,    DE_9,   DE_0,    MY_SCSH,
+      DE_GRV,  DE_1, DE_2, DE_3, DE_4,   DE_5,                                        DE_6,    DE_7,   DE_8,    DE_9,   DE_0,    XXXXXXX,
       KC_TAB,  DE_Q, DE_W, DE_F, DE_P,   DE_B,                                        DE_J,    DE_L,   DE_U,    DE_Y,   DE_QUOT, KC_BSPC,
       KC_ESC,  MY_A, MY_R, DE_S, DE_T,   DE_G,                                        DE_M,    DE_N,   DE_E,    MY_I,   MY_O,    KC_ENT,
       KC_LSFT, DE_Z, DE_X, DE_C, DE_D,   DE_V,          KC_BSPC,       KC_ENT,        DE_K,    DE_H,   DE_COMM, DE_DOT, MY_SLSH, KC_RSFT,
@@ -102,15 +102,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       ),
 
   [_EXTEND] = LAYOUT(
-      XXXXXXX, TMUX_1, TMUX_2, TMUX_3, TMUX_4,  TMUX_5,                     KC_MPRV, KC_MPLY, KC_MNXT, KC_VOLD, KC_VOLU, XXXXXXX,
-      _______, TMUX_3, DE_7,   DE_8,   DE_9,    DE_PLUS,                    KC_HOME, KC_PGUP, VIM_ALT, XXXXXXX, KC_DEL,  XXXXXXX,
-      _______, TMUX_2, MY_4,   DE_5,   DE_6,    DE_MINS,                    KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_BSPC, XXXXXXX,
-      _______, TMUX_1, DE_1,   DE_2,   DE_3,    XXXXXXX,  _______, RESET,   KC_END,  KC_PGDN, DE_COMM, DE_DOT,  XXXXXXX, XXXXXXX,
+      RGB_TOG, TMUX_1, TMUX_2, TMUX_3, TMUX_4,  TMUX_5,                     KC_MPRV, KC_MPLY, KC_MNXT, KC_VOLD, KC_VOLU, XXXXXXX,
+      _______, TMUX_3, DE_7,   DE_8,   DE_9,    DE_PLUS,                    XXXXXXX, XXXXXXX, VIM_ALT, XXXXXXX, MY_SLSH, _______,
+      _______, TMUX_2, MY_4,   DE_5,   DE_6,    DE_MINS,                    KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, _______,
+      _______, TMUX_1, DE_1,   DE_2,   DE_3,    XXXXXXX,  _______, _______, XXXXXXX, XXXXXXX, DE_COMM, DE_DOT,  XXXXXXX, XXXXXXX,
                                        _______, SFT_ZERO, KC_LALT, _______, _______, _______
       ),
 
   [_SYMBOLS] = LAYOUT(
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+      RESET,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, RESET,
       XXXXXXX, DE_EXLM, DE_LABK, DE_AT,   DE_RABK, DE_PLUS,                   DE_CIRC, DE_LBRC, DE_UNDS, DE_RBRC, DE_EURO, XXXXXXX,
       XXXXXXX, DE_BSLS, DE_LPRN, DE_DQUO, DE_RPRN, DE_MINS,                   DE_PERC, DE_LCBR, DE_EQL,  DE_RCBR, DE_PIPE, XXXXXXX,
       XXXXXXX, XXXXXXX, DE_TILD, DE_QUOT, DE_HASH, DE_DLR,  _______, _______, DE_GRV,  DE_AMPR, DE_ASTR, DE_COLN, DE_QUES, XXXXXXX,
