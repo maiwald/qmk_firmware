@@ -13,9 +13,6 @@ enum layers {
 
 enum custom_keycodes {
   MY_SLSH = SAFE_RANGE,
-  TMUX_1,
-  TMUX_2,
-  TMUX_3,
 };
 
 // COLEMAK KEYS
@@ -77,9 +74,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       ),
 
   [_EXTEND] = LAYOUT_ortho_4x12(
-      XXXXXXX, TMUX_3,  DE_7,    DE_8,    DE_9,     DE_PLUS, XXXXXXX, XXXXXXX, VIM_ALT, XXXXXXX, MY_SCSH, _______,
-      XXXXXXX, TMUX_2,  HOME_4,  DE_5,    DE_6,     DE_MINS, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, _______,
-      XXXXXXX, TMUX_1,  DE_1,    DE_2,    DE_3,     XXXXXXX, XXXXXXX, XXXXXXX, DE_COMM, DE_DOT,  XXXXXXX, RESET,
+      XXXXXXX, XXXXXXX, DE_7,    DE_8,    DE_9,     DE_PLUS, XXXXXXX, XXXXXXX, VIM_ALT, XXXXXXX, MY_SCSH, _______,
+      XXXXXXX, XXXXXXX, HOME_4,  DE_5,    DE_6,     DE_MINS, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, _______,
+      XXXXXXX, XXXXXXX, DE_1,    DE_2,    DE_3,     XXXXXXX, XXXXXXX, XXXXXXX, DE_COMM, DE_DOT,  XXXXXXX, RESET,
       XXXXXXX, XXXXXXX, _______, _______, SFT_ZERO, KC_BSPC, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX
       ),
 
@@ -110,24 +107,6 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case TMUX_1:
-      if (record->event.pressed) {
-        tap_code16(C(KC_B));
-        tap_code16(KC_1);
-      }
-      return false;
-    case TMUX_2:
-      if (record->event.pressed) {
-        tap_code16(C(KC_B));
-        tap_code16(KC_2);
-      }
-      return false;
-    case TMUX_3:
-      if (record->event.pressed) {
-        tap_code16(C(KC_B));
-        tap_code16(KC_3);
-      }
-      return false;
     case MY_SLSH:
       if (record->event.pressed) {
         if ((get_mods() | get_oneshot_mods()) & MOD_MASK_SHIFT) {
