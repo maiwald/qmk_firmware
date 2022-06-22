@@ -70,15 +70,25 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 
 #define MY_A LCTL_T(DE_A)
 #define MY_O RCTL_T(DE_O)
-#define MY_R LSFT_T(DE_R)
-#define MY_I RSFT_T(DE_I)
+
+// lower home row mods
+#define MY_X    LSFT_T(DE_X)
+#define MY_C    LALT_T(DE_C)
+#define MY_D    LGUI_T(DE_D)
+#define MY_H    RGUI_T(DE_H)
+#define MY_COMM RALT_T(DE_COMM)
+#define MY_DOT  RSFT_T(DE_DOT)
+
+// lower home row mods (extend)
+#define MY_1    LSFT_T(DE_1)
+#define MY_2    LALT_T(DE_2)
+#define MY_3    LGUI_T(DE_3)
 
 #define VIM_ALT C(DE_6)
 #define KC_EUR  S(A(KC_2))
 #define MY_GUI  TD(TD_GUI_ALT)
 #define MY_ALT  TD(TD_GER_ALT)
 #define MY_SCSH G(S(KC_4))
-#define MY_4    MT(MOD_LSFT, DE_4)
 
 #define EXT_SPC  LT(_EXTEND, KC_SPC)
 #define SFT_ZERO MT(MOD_LSFT, DE_0)
@@ -96,16 +106,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_COLEMAK] = LAYOUT(
       DE_GRV,  DE_1, DE_2, DE_3, DE_4,   DE_5,                                        DE_6,    DE_7,   DE_8,    DE_9,   DE_0,    XXXXXXX,
       KC_TAB,  DE_Q, DE_W, DE_F, DE_P,   DE_B,                                        DE_J,    DE_L,   DE_U,    DE_Y,   DE_QUOT, KC_BSPC,
-      KC_ESC,  MY_A, MY_R, DE_S, DE_T,   DE_G,                                        DE_M,    DE_N,   DE_E,    MY_I,   MY_O,    KC_ENT,
-      KC_LSFT, DE_Z, DE_X, DE_C, DE_D,   DE_V,          KC_BSPC,       KC_ENT,        DE_K,    DE_H,   DE_COMM, DE_DOT, MY_SLSH, KC_RSFT,
+      KC_ESC,  MY_A, DE_R, DE_S, DE_T,   DE_G,                                        DE_M,    DE_N,   DE_E,    DE_I,   MY_O,    KC_ENT,
+      KC_LSFT, DE_Z, MY_X, MY_C, MY_D,   DE_V,          KC_BSPC,       KC_ENT,        DE_K,    MY_H,   MY_COMM, MY_DOT, MY_SLSH, KC_RSFT,
                                  MY_GUI, OSM(MOD_LSFT), OSL(_SYMBOLS), OSL(_SYMBOLS), EXT_SPC, MY_ALT
       ),
 
   [_EXTEND] = LAYOUT(
       RGB_TOG, TMUX_1,  TMUX_2, TMUX_3, TMUX_4, TMUX_5,                     KC_MPRV, KC_MPLY, KC_MNXT, KC_VOLD, KC_VOLU, XXXXXXX,
       _______, XXXXXXX, DE_7,   DE_8,   DE_9,   DE_PLUS,                    XXXXXXX, XXXXXXX, VIM_ALT, XXXXXXX, MY_SLSH, _______,
-      _______, XXXXXXX, MY_4,   DE_5,   DE_6,   DE_MINS,                    KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, _______,
-      _______, XXXXXXX, DE_1,   DE_2,   DE_3,   XXXXXXX,  _______, _______, XXXXXXX, XXXXXXX, DE_COMM, DE_DOT,  XXXXXXX, XXXXXXX,
+      _______, XXXXXXX, DE_4,   DE_5,   DE_6,   DE_MINS,                    KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, _______,
+      _______, XXXXXXX, MY_1,   MY_2,   MY_3,   XXXXXXX,  _______, _______, XXXXXXX, XXXXXXX, DE_COMM, DE_DOT,  XXXXXXX, XXXXXXX,
                                        _______, SFT_ZERO, KC_LALT, _______, _______, _______
       ),
 
