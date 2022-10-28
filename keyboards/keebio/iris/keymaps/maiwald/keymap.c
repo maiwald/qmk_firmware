@@ -88,6 +88,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define KC_EUR  S(A(KC_2))
 #define MY_GUI  TD(TD_GUI_ALT)
 #define MY_ALT  TD(TD_GER_ALT)
+#define APP_TAB G(DE_GRV)
 #define MY_SCSH G(S(KC_4))
 
 #define EXT_SPC  LT(_EXTEND, KC_SPC)
@@ -113,7 +114,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_EXTEND] = LAYOUT(
       RGB_TOG, TMUX_1,  TMUX_2, TMUX_3, TMUX_4, TMUX_5,                     KC_MPRV, KC_MPLY, KC_MNXT, KC_VOLD, KC_VOLU, XXXXXXX,
-      _______, XXXXXXX, DE_7,   DE_8,   DE_9,   DE_PLUS,                    XXXXXXX, XXXXXXX, VIM_ALT, XXXXXXX, MY_SLSH, _______,
+      APP_TAB, XXXXXXX, DE_7,   DE_8,   DE_9,   DE_PLUS,                    XXXXXXX, XXXXXXX, VIM_ALT, XXXXXXX, MY_SLSH, _______,
       _______, XXXXXXX, DE_4,   DE_5,   DE_6,   DE_MINS,                    KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, _______,
       _______, XXXXXXX, MY_1,   MY_2,   MY_3,   XXXXXXX,  _______, _______, XXXXXXX, XXXXXXX, DE_COMM, DE_DOT,  XXXXXXX, XXXXXXX,
                                        _______, SFT_ZERO, KC_LALT, _______, _______, _______

@@ -43,6 +43,7 @@ enum custom_keycodes {
 #define SYM_ENT   LT(_SYMBOLS, KC_ENT)
 
 #define VIM_ALT   C(DE_6)
+#define APP_TAB   G(DE_GRV)
 #define MY_SCSH   G(S(KC_4))
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -76,7 +77,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       ),
 
   [_EXTEND] = LAYOUT_ortho_4x12(
-      XXXXXXX, XXXXXXX, DE_7,    DE_8,    DE_9,     DE_PLUS, XXXXXXX, XXXXXXX, VIM_ALT, XXXXXXX, MY_SCSH, _______,
+      APP_TAB, XXXXXXX, DE_7,    DE_8,    DE_9,     DE_PLUS, XXXXXXX, XXXXXXX, VIM_ALT, XXXXXXX, MY_SCSH, _______,
       XXXXXXX, KC_LCTL, HOME_4,  HOME_5,  HOME_6,   DE_MINS, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, _______,
       XXXXXXX, XXXXXXX, DE_1,    DE_2,    DE_3,     XXXXXXX, XXXXXXX, XXXXXXX, DE_COMM, DE_DOT,  XXXXXXX, RESET,
       XXXXXXX, XXXXXXX, _______, _______, SFT_ZERO, KC_BSPC, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX
