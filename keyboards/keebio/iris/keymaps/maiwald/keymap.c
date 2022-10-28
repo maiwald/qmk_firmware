@@ -69,6 +69,8 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 };
 
 #define MY_A LCTL_T(DE_A)
+#define MY_R LSFT_T(DE_R)
+#define MY_I RSFT_T(DE_I)
 #define MY_O RCTL_T(DE_O)
 
 // lower home row mods
@@ -78,6 +80,11 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define MY_H    RGUI_T(DE_H)
 #define MY_COMM RALT_T(DE_COMM)
 #define MY_DOT  RSFT_T(DE_DOT)
+
+// home row mods (extend)
+#define MY_4    LSFT_T(DE_4)
+#define MY_5    LALT_T(DE_5)
+#define MY_6    LGUI_T(DE_6)
 
 // lower home row mods (extend)
 #define MY_1    LSFT_T(DE_1)
@@ -107,7 +114,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_COLEMAK] = LAYOUT(
       DE_GRV,  DE_1, DE_2, DE_3, DE_4,   DE_5,                                        DE_6,    DE_7,   DE_8,    DE_9,   DE_0,    XXXXXXX,
       KC_TAB,  DE_Q, DE_W, DE_F, DE_P,   DE_B,                                        DE_J,    DE_L,   DE_U,    DE_Y,   KC_DEL,  KC_BSPC,
-      KC_ESC,  MY_A, DE_R, DE_S, DE_T,   DE_G,                                        DE_M,    DE_N,   DE_E,    DE_I,   MY_O,    KC_ENT,
+      KC_ESC,  MY_A, MY_R, DE_S, DE_T,   DE_G,                                        DE_M,    DE_N,   DE_E,    MY_I,   MY_O,    KC_ENT,
       KC_LSFT, DE_Z, MY_X, MY_C, MY_D,   DE_V,          KC_BSPC,       KC_ENT,        DE_K,    MY_H,   MY_COMM, MY_DOT, MY_SLSH, KC_RSFT,
                                  MY_GUI, OSM(MOD_LSFT), OSL(_SYMBOLS), OSL(_SYMBOLS), EXT_SPC, MY_ALT
       ),
@@ -115,7 +122,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_EXTEND] = LAYOUT(
       RGB_TOG, TMUX_1,  TMUX_2, TMUX_3, TMUX_4, TMUX_5,                     KC_MPRV, KC_MPLY, KC_MNXT, KC_VOLD, KC_VOLU, XXXXXXX,
       APP_TAB, XXXXXXX, DE_7,   DE_8,   DE_9,   DE_PLUS,                    XXXXXXX, XXXXXXX, VIM_ALT, XXXXXXX, MY_SLSH, _______,
-      _______, XXXXXXX, DE_4,   DE_5,   DE_6,   DE_MINS,                    KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, _______,
+      _______, XXXXXXX, MY_4,   MY_5,   MY_6,   DE_MINS,                    KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, _______,
       _______, XXXXXXX, MY_1,   MY_2,   MY_3,   XXXXXXX,  _______, _______, XXXXXXX, XXXXXXX, DE_COMM, DE_DOT,  XXXXXXX, XXXXXXX,
                                        _______, SFT_ZERO, KC_LALT, _______, _______, _______
       ),
