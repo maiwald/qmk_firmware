@@ -1,5 +1,7 @@
 #include QMK_KEYBOARD_H
 #include "keymap_german_mac_iso.h"
+#include "achordion.h"
+
 
 enum layers {
   _COLEMAK = 0,
@@ -145,6 +147,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  if (!process_achordion(keycode, record)) { return false; }
+
   uint16_t one_shot_mod_state = get_oneshot_mods();
 
   switch (keycode) {
@@ -204,4 +208,53 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     default:
       return true;
   }
+}
+
+/**
+ * Optional callback to customize which key chords are considered "held".
+ *
+ * This callback is called if while `tap_hold_keycode` is pressed,
+ * `other_keycode` is pressed. Return true if the tap-hold key should be
+ * considered held, or false to consider it tapped.
+ *
+ * @param tap_hold_keycode Keycode of the tap-hold key.
+ * @param tap_hold_record keyrecord_t from the tap-hold press event.
+ * @param other_keycode Keycode of the other key.
+ * @param other_record keyrecord_t from the other key's press event.
+ * @return True if the tap-hold key should be considered held.
+ */
+bool achordion_chord(uint16_t tap_hold_keycode,
+                     keyrecord_t* tap_hold_record,
+                     uint16_t other_keycode,
+                     keyrecord_t* other_record) {
+  if (MY_A == tap_hold_keycode) { return true; }
+  if (tap_hold_record->event.key.row % (MATRIX_ROWS / 2) == 4) { return true; }
+  return achordion_opposite_hands(tap_hold_record, other_record);
+}
+
+/**
+ * Optional callback to define a timeout duration per keycode.
+ *
+ * The callback determines Achordion's timeout duration for `tap_hold_keycode`
+ * in units of milliseconds. The timeout be in the range 0 to 32767 ms (upper
+ * bound is due to 16-bit timer limitations). Use a timeout of 0 to bypass
+ * Achordion.
+ *
+ * @param tap_hold_keycode Keycode of the tap-hold key.
+ * @return Timeout duration in milliseconds in the range 0 to 32767.
+ */
+uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
+  switch (tap_hold_keycode) {
+    case MY_4:
+    case MY_5:
+    case MY_6:
+    case EXT_SPC:
+      return 0;  // Bypass Achordion for these keys.
+  }
+
+  return 800;  // Otherwise use a timeout of 800 ms.
+}
+
+void matrix_scan_user(void) {
+  achordion_task();
 }
