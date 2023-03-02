@@ -29,7 +29,7 @@ enum {
   SINGLE_HOLD,
 };
 
-uint8_t cur_dance(qk_tap_dance_state_t *state) {
+uint8_t cur_dance(tap_dance_state_t *state) {
   if (state->count == 1) {
     if (state->pressed) return SINGLE_HOLD;
     else return SINGLE_TAP;
@@ -41,7 +41,7 @@ uint8_t cur_dance(qk_tap_dance_state_t *state) {
 // Create an instance of 'tap' for the 'x' tap dance.
 static uint8_t gertap_state = 0;
 
-void gertap_finished(qk_tap_dance_state_t *state, void *user_data) {
+void gertap_finished(tap_dance_state_t *state, void *user_data) {
   gertap_state = cur_dance(state);
   switch (gertap_state) {
     case SINGLE_TAP:
@@ -54,7 +54,7 @@ void gertap_finished(qk_tap_dance_state_t *state, void *user_data) {
   }
 }
 
-void gertap_reset(qk_tap_dance_state_t *state, void *user_data) {
+void gertap_reset(tap_dance_state_t *state, void *user_data) {
   switch (gertap_state) {
     case SINGLE_TAP:
       break;
@@ -65,7 +65,7 @@ void gertap_reset(qk_tap_dance_state_t *state, void *user_data) {
   gertap_state = 0;
 }
 
-qk_tap_dance_action_t tap_dance_actions[] = {
+tap_dance_action_t tap_dance_actions[] = {
   [TD_GUI_ALT] = ACTION_TAP_DANCE_DOUBLE(KC_LGUI, KC_LALT),
   [TD_GER_ALT] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, gertap_finished, gertap_reset),
 };
