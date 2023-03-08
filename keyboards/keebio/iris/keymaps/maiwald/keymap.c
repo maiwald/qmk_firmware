@@ -91,12 +91,12 @@ tap_dance_action_t tap_dance_actions[] = {
 #define EXT_SPC  LT(_EXTEND, KC_SPC)
 #define SFT_ZERO MT(MOD_LSFT, DE_0)
 
-bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
+uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case EXT_SPC:
-      return true;
+      return 0;
     default:
-      return false;
+      return QUICK_TAP_TERM;
   }
 }
 

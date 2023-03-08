@@ -22,6 +22,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define TAPPING_TERM 200
 #define IGNORE_MOD_TAP_INTERRUPT
 #define PERMISSIVE_HOLD
-#define TAPPING_FORCE_HOLD_PER_KEY
+#define QUICK_TAP_TERM_PER_KEY
 
 #undef RGBLIGHT_ANIMATIONS
