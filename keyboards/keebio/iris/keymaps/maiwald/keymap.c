@@ -113,7 +113,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       RGB_TOG, TMUX_1,  TMUX_2, TMUX_3, TMUX_4, TMUX_5,                     KC_MPRV, KC_MPLY, KC_MNXT, KC_VOLD, KC_VOLU, XXXXXXX,
       APP_TAB, XXXXXXX, DE_7,   DE_8,   DE_9,   DE_PLUS,                    XXXXXXX, XXXXXXX, VIM_ALT, XXXXXXX, MY_SLSH, _______,
       _______, XXXXXXX, MY_4,   MY_5,   MY_6,   DE_MINS,                    KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, _______,
-      _______, XXXXXXX, DE_1,   DE_2,   DE_3,   XXXXXXX,  _______, _______, XXXXXXX, XXXXXXX, DE_COMM, DE_DOT,  XXXXXXX, XXXXXXX,
+      _______, XXXXXXX, DE_1,   DE_2,   DE_3,   XXXXXXX,  _______, _______, XXXXXXX, XXXXXXX, DE_COMM, DE_DOT,  DE_SLSH, XXXXXXX,
                                        _______, SFT_ZERO, KC_LALT, _______, _______, _______
       ),
 
