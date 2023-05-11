@@ -492,3 +492,11 @@ pytest:
 .PHONY: format-and-pytest
 format-and-pytest:
 	RUNTIME=docker ./util/docker_cmd.sh bash -lic "$(CONTAINER_PREAMBLE); qmk format-c --core-only -a && qmk format-python -a && qmk pytest"
+
+.PHONY: my-iris
+my-iris:
+	qmk compile -kb keebio/iris/rev4 -km maiwald
+
+.PHONY: my-technik
+my-technik:
+	qmk compile -kb boardsource/technik_o -km maiwald
