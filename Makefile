@@ -500,3 +500,7 @@ my-iris:
 .PHONY: my-technik
 my-technik:
 	qmk compile -kb boardsource/technik_o -km maiwald
+
+.PHONY: my-kyria
+my-kyria:
+	qmk compile -kb splitkb/kyria/rev2 -km maiwald
