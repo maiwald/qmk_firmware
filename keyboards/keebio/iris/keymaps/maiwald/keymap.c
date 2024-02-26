@@ -1,6 +1,6 @@
 #include QMK_KEYBOARD_H
 #include "keymap_german_mac_iso.h"
-#include "achordion.h"
+#include "features/achordion.h"
 
 
 enum layers {
