@@ -1,4 +1,4 @@
-// Copyright 2022 Google LLC
+// Copyright 2022-2023 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -52,6 +52,27 @@
 #pragma once
 
 #include "quantum.h"
+
+/**
+ * Suppress tap-hold mods within a *typing streak* by defining
+ * ACHORDION_STREAK. This can help preventing accidental mod
+ * activation when performing a fast tapping sequence.
+ * This is inspired by https://sunaku.github.io/home-row-mods.html#typing-streaks
+ *
+ * Enable with:
+ *
+ *    #define ACHORDION_STREAK
+ *
+ * Adjust the maximum time between key events before modifiers can be enabled
+ * by defining the following callback in your keymap.c:
+ *
+ *    uint16_t achordion_streak_timeout(uint16_t tap_hold_keycode) {
+ *      return 100;  // Default of 100 ms.
+ *    }
+ */
+#ifdef ACHORDION_STREAK
+uint16_t achordion_streak_timeout(uint16_t tap_hold_keycode);
+#endif
 
 #ifdef __cplusplus
 extern "C" {
@@ -134,22 +155,15 @@ uint16_t achordion_timeout(uint16_t tap_hold_keycode);
  * key is still being settled. This is helpful to reduce delay particularly when
  * using mod-tap keys with an external mouse.
  *
- * Define this callback in your keymap.c. The default callback is
+ * Define this callback in your keymap.c. The default callback is eager for
+ * Shift and Ctrl, and not for Alt and GUI:
  *
  *     bool achordion_eager_mod(uint8_t mod) {
- *       switch (mod) {
- *         case MOD_LSFT:
- *         case MOD_RSFT:
- *         case MOD_LCTL:
- *         case MOD_RCTL:
- *           return true;  // Eagerly apply Shift and Ctrl mods.
- *
- *        default:
- *          return false;
- *       }
+ *       return (mod & (MOD_LALT | MOD_LGUI)) == 0;
  *     }
  *
- * @note `mod` should be compared with `MOD_` prefixed codes, not `KC_` codes.
+ * @note `mod` should be compared with `MOD_` prefixed codes, not `KC_` codes,
+ * described at <https://docs.qmk.fm/#/mod_tap>.
  *
  * @param mod Modifier `MOD_` code.
  * @return True if the modifier should be eagerly applied.
