@@ -103,7 +103,7 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_COLEMAK] = LAYOUT(
       DE_GRV,  DE_1, DE_2, DE_3, DE_4,   DE_5,                                        DE_6,    DE_7,   DE_8,    DE_9,   DE_0,    XXXXXXX,
-      KC_TAB,  DE_Q, DE_W, DE_F, DE_P,   DE_B,                                        DE_J,    DE_L,   DE_U,    DE_Y,   KC_DEL,  KC_BSPC,
+      KC_TAB,  DE_Q, DE_W, DE_F, DE_P,   DE_B,                                        DE_J,    DE_L,   DE_U,    DE_Y,   DE_MINS, KC_BSPC,
       KC_ESC,  MY_A, MY_R, DE_S, DE_T,   DE_G,                                        DE_M,    DE_N,   DE_E,    MY_I,   MY_O,    KC_ENT,
       KC_LSFT, DE_Z, DE_X, DE_C, DE_D,   DE_V,          KC_BSPC,       KC_ENT,        DE_K,    DE_H,   DE_COMM, DE_DOT, MY_SLSH, KC_RSFT,
                                  MY_GUI, OSM(MOD_LSFT), OSL(_SYMBOLS), OSL(_SYMBOLS), EXT_SPC, MY_ALT
