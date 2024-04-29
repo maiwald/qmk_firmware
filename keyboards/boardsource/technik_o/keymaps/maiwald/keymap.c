@@ -50,7 +50,7 @@ enum custom_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_COLEMAK] = LAYOUT_ortho_4x12(
-      KC_TAB,  DE_Q,    DE_W,    DE_F,    DE_P,    DE_B,    DE_J,    DE_L,    DE_U,    DE_Y,   KC_DEL,  KC_BSPC,
+      KC_TAB,  DE_Q,    DE_W,    DE_F,    DE_P,    DE_B,    DE_J,    DE_L,    DE_U,    DE_Y,   DE_MINS, KC_BSPC,
       KC_ESC,  COL_A,   COL_R,   DE_S,    DE_T,    DE_G,    DE_M,    DE_N,    DE_E,    COL_I,  COL_O,   KC_ENT,
       KC_LSFT, DE_Z,    DE_X,    DE_C,    DE_D,    DE_V,    DE_K,    DE_H,    DE_COMM, DE_DOT, MY_SLSH, KC_RSFT,
       KC_LCTL, XXXXXXX, KC_LALT, KC_LGUI, OSM_SFT, SYMBOLS, SYMBOLS, EXT_SPC, COL_GER, MEDIA,  XXXXXXX, XXXXXXX
