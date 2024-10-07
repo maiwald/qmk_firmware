@@ -494,7 +494,7 @@ format-and-pytest:
 	RUNTIME=docker ./util/docker_cmd.sh bash -lic "$(CONTAINER_PREAMBLE); qmk format-c --core-only -a && qmk format-python -a && qmk pytest"
 
 .PHONY: my
-my: my-iris my-technik
+my: my-iris my-technik my-unicorne
 
 .PHONY: my-iris
 my-iris:
@@ -503,3 +503,7 @@ my-iris:
 .PHONY: my-technik
 my-technik:
 	qmk compile -kb boardsource/technik_o -km maiwald
+
+.PHONY: my-unicorne
+my-unicorne:
+	qmk compile -kb boardsource/unicorne -km maiwald
