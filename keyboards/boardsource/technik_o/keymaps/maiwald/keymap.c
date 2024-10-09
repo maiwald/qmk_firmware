@@ -81,11 +81,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       APP_TAB, XXXXXXX, DE_7,    DE_8,    DE_9,     DE_PLUS, KC_MPRV, KC_MNXT, VIM_ALT, KC_VOLD, KC_VOLU, _______,
       XXXXXXX, KC_LCTL, HOME_4,  HOME_5,  HOME_6,   DE_MINS, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, _______,
       XXXXXXX, XXXXXXX, DE_1,    DE_2,    DE_3,     XXXXXXX, XXXXXXX, XXXXXXX, DE_COMM, DE_DOT,  DE_SLSH, KC_MPLY,
-      XXXXXXX, XXXXXXX, _______, _______, SFT_ZERO, KC_BSPC, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX
+      QK_BOOT, XXXXXXX, _______, _______, SFT_ZERO, KC_BSPC, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX
       ),
 
   [_SYMBOLS] = LAYOUT_ortho_4x12(
-      _______, DE_BSLS, DE_LABK, DE_DQUO, DE_RABK, DE_PLUS, DE_CIRC, DE_LBRC, DE_UNDS, DE_RBRC, DE_EURO, KC_BSPC,
+      _______, DE_BSLS, DE_LABK, DE_DQUO, DE_RABK, DE_PLUS, DE_CIRC, DE_LBRC, DE_UNDS, DE_RBRC, DE_EURO, _______,
       _______, DE_EXLM, DE_LPRN, DE_QUOT, DE_RPRN, DE_MINS, DE_PERC, DE_LCBR, DE_EQL,  DE_RCBR, DE_PIPE, _______,
       _______, XXXXXXX, DE_HASH, DE_AT,   DE_DLR,  DE_TILD, DE_GRV,  DE_AMPR, DE_ASTR, DE_COLN, DE_QUES, _______,
       XXXXXXX, XXXXXXX, _______, _______, _______, KC_BSPC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX

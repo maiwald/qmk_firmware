@@ -104,16 +104,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       ),
 
   [_EXTEND] = LAYOUT(
-      _______, XXXXXXX, DE_7,   DE_8,   DE_9,   DE_PLUS,                    KC_MPRV, KC_MNXT, VIM_ALT, KC_VOLD, KC_VOLU, _______,
-      _______, XXXXXXX, MY_4,   MY_5,   MY_6,   DE_MINS,                    KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, _______,
-      _______, XXXXXXX, DE_1,   DE_2,   DE_3,   XXXXXXX,                    XXXXXXX, XXXXXXX, DE_COMM, DE_DOT,  DE_SLSH, KC_MPLY,
+      APP_TAB, XXXXXXX, DE_7,   DE_8,   DE_9,   DE_PLUS,                    KC_MPRV, KC_MNXT, VIM_ALT, KC_VOLD, KC_VOLU, _______,
+      XXXXXXX, XXXXXXX, MY_4,   MY_5,   MY_6,   DE_MINS,                    KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, _______,
+      QK_BOOT, XXXXXXX, DE_1,   DE_2,   DE_3,   XXXXXXX,                    XXXXXXX, XXXXXXX, DE_COMM, DE_DOT,  DE_SLSH, KC_MPLY,
                                        _______, SFT_ZERO, KC_LALT, _______, _______, _______
       ),
 
   [_SYMBOLS] = LAYOUT(
-      XXXXXXX, DE_BSLS, DE_LABK, DE_DQUO, DE_RABK, DE_PLUS,                   DE_CIRC, DE_LBRC, DE_UNDS, DE_RBRC, DE_EURO, _______,
-      XXXXXXX, DE_EXLM, DE_LPRN, DE_QUOT, DE_RPRN, DE_MINS,                   DE_PERC, DE_LCBR, DE_EQL,  DE_RCBR, DE_PIPE, _______,
-      XXXXXXX, XXXXXXX, DE_HASH, DE_AT,   DE_DLR,  DE_TILD,                   DE_GRV,  DE_AMPR, DE_ASTR, DE_COLN, DE_QUES, XXXXXXX,
+      _______, DE_BSLS, DE_LABK, DE_DQUO, DE_RABK, DE_PLUS,                   DE_CIRC, DE_LBRC, DE_UNDS, DE_RBRC, DE_EURO, _______,
+      _______, DE_EXLM, DE_LPRN, DE_QUOT, DE_RPRN, DE_MINS,                   DE_PERC, DE_LCBR, DE_EQL,  DE_RCBR, DE_PIPE, _______,
+      _______, XXXXXXX, DE_HASH, DE_AT,   DE_DLR,  DE_TILD,                   DE_GRV,  DE_AMPR, DE_ASTR, DE_COLN, DE_QUES, _______,
                                           _______, KC_SPC,  _______, _______, _______, _______
       ),
 
