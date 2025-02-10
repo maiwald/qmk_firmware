@@ -68,6 +68,10 @@ tap_dance_action_t tap_dance_actions[] = {
 // home row mods
 #define MY_A LCTL_T(DE_A)
 #define MY_R LSFT_T(DE_R)
+#define MY_S LALT_T(DE_S)
+#define MY_T LGUI_T(DE_T)
+#define MY_N RGUI_T(DE_N)
+#define MY_E RALT_T(DE_E)
 #define MY_I RSFT_T(DE_I)
 #define MY_O RCTL_T(DE_O)
 
@@ -98,7 +102,7 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_COLEMAK] = LAYOUT(
       KC_TAB,  DE_Q, DE_W, DE_F, DE_P,   DE_B,                                        DE_J,    DE_L,   DE_U,    DE_Y,   DE_MINS, KC_BSPC,
-      KC_ESC,  MY_A, MY_R, DE_S, DE_T,   DE_G,                                        DE_M,    DE_N,   DE_E,    MY_I,   MY_O,    KC_ENT,
+      KC_ESC,  MY_A, MY_R, MY_S, MY_T,   DE_G,                                        DE_M,    MY_N,   MY_E,    MY_I,   MY_O,    KC_ENT,
       APP_TAB, DE_Z, DE_X, DE_C, DE_D,   DE_V,                                        DE_K,    DE_H,   DE_COMM, DE_DOT, MY_SLSH, KC_RSFT,
                                  MY_GUI, OSM(MOD_LSFT), OSL(_SYMBOLS), OSL(_SYMBOLS), EXT_SPC, MY_ALT
       ),
@@ -176,7 +180,7 @@ bool achordion_chord(uint16_t tap_hold_keycode,
                      uint16_t other_keycode,
                      keyrecord_t* other_record) {
   if (MY_A == tap_hold_keycode) { return true; }
-  if (tap_hold_record->event.key.row % (MATRIX_ROWS / 2) == 4) { return true; }
+  if (tap_hold_record->event.key.row % (MATRIX_ROWS / 2) == 1) { return true; }
   return achordion_opposite_hands(tap_hold_record, other_record);
 }
 

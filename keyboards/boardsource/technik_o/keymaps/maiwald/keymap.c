@@ -20,6 +20,10 @@ enum custom_keycodes {
 #define COL_SET   DF(_COLEMAK)
 #define COL_A     LCTL_T(DE_A)
 #define COL_R     LSFT_T(DE_R)
+#define COL_S     LALT_T(DE_S)
+#define COL_T     LGUI_T(DE_T)
+#define COL_N     RGUI_T(DE_N)
+#define COL_E     RALT_T(DE_E)
 #define COL_I     RSFT_T(DE_I)
 #define COL_O     RCTL_T(DE_O)
 #define COL_GER   OSL(_COLEMAK_GERMAN)
@@ -51,7 +55,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_COLEMAK] = LAYOUT_ortho_4x12(
       KC_TAB,  DE_Q,    DE_W,    DE_F,    DE_P,    DE_B,    DE_J,    DE_L,    DE_U,    DE_Y,   DE_MINS, KC_BSPC,
-      KC_ESC,  COL_A,   COL_R,   DE_S,    DE_T,    DE_G,    DE_M,    DE_N,    DE_E,    COL_I,  COL_O,   KC_ENT,
+      KC_ESC,  COL_A,   COL_R,   COL_S,   COL_T,   DE_G,    DE_M,    COL_N,   COL_E,   COL_I,  COL_O,   KC_ENT,
       KC_LSFT, DE_Z,    DE_X,    DE_C,    DE_D,    DE_V,    DE_K,    DE_H,    DE_COMM, DE_DOT, MY_SLSH, KC_RSFT,
       KC_LCTL, XXXXXXX, KC_LALT, KC_LGUI, OSM_SFT, SYMBOLS, SYMBOLS, EXT_SPC, COL_GER, MEDIA,  XXXXXXX, XXXXXXX
       ),
