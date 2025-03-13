@@ -1,6 +1,5 @@
 #include QMK_KEYBOARD_H
 #include "keymap_german_mac_iso.h"
-#include "features/achordion.h"
 
 enum layers {
   _COLEMAK = 0,
@@ -50,6 +49,14 @@ enum custom_keycodes {
 #define VIM_ALT   C(DE_6)
 #define APP_TAB   G(DE_GRV)
 #define MY_SCSH   G(S(KC_4))
+
+const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM =
+    LAYOUT_ortho_4x12(
+      'L', 'L', 'L', 'L', 'L', 'L', 'R', 'R', 'R', 'R', 'R', 'R',
+      'L', 'L', 'L', 'L', 'L', 'L', 'R', 'R', 'R', 'R', 'R', 'R',
+      'L', 'L', 'L', 'L', 'L', 'L', 'R', 'R', 'R', 'R', 'R', 'R',
+      '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*', '*'
+      );
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -114,8 +121,6 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  if (!process_achordion(keycode, record)) { return false; }
-
   switch (keycode) {
     case MY_SLSH:
       if (record->event.pressed) {
@@ -136,28 +141,4 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     default:
       return true;
   }
-}
-
-bool achordion_chord(uint16_t tap_hold_keycode,
-                     keyrecord_t* tap_hold_record,
-                     uint16_t other_keycode,
-                     keyrecord_t* other_record) {
-  if (tap_hold_record->event.key.row == 3) { return true; }
-  return achordion_opposite_hands(tap_hold_record, other_record);
-}
-
-uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
-  switch (tap_hold_keycode) {
-    case HOME_4:
-    case HOME_5:
-    case HOME_6:
-    case EXT_SPC:
-      return 0;  // Bypass Achordion for these keys.
-  }
-
-  return 800;  // Otherwise use a timeout of 800 ms.
-}
-
-void matrix_scan_user(void) {
-  achordion_task();
 }

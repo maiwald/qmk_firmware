@@ -1,4 +1,3 @@
-SRC += features/achordion.c
 TAP_DANCE_ENABLE = yes
 AUDIO_ENABLE = no
 RGBLIGHT_ENABLE = no
