@@ -1,0 +1,4 @@
+#define MASTER_RIGHT
+#define QUICK_TAP_TERM_PER_KEY
+#define PERMISSIVE_HOLD
+#define CHORDAL_HOLD
