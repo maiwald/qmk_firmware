@@ -1,11 +1,13 @@
 #include QMK_KEYBOARD_H
-#include "keymap_german_mac_iso.h"
+#include "keymap_german_macwin.h"
 
 
 enum layers {
-  _COLEMAK = 0,
+  _COLEMAK_MAC = 0,
+  _COLEMAK_WIN,
   _EXTEND,
-  _SYMBOLS,
+  _SYM_MAC,
+  _SYM_WIN,
   _GERMAN,
 };
 
@@ -86,6 +88,9 @@ tap_dance_action_t tap_dance_actions[] = {
 #define APP_TAB G(DE_GRV)
 #define MY_SCSH G(S(KC_4))
 
+#define SET_MAC PDF(_COLEMAK_MAC)
+#define SET_WIN PDF(_COLEMAK_WIN)
+
 #define EXT_SPC  LT(_EXTEND, KC_SPC)
 #define SFT_ZERO MT(MOD_LSFT, DE_0)
 
@@ -107,24 +112,38 @@ const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM =
     );
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [_COLEMAK] = LAYOUT(
+  [_COLEMAK_MAC] = LAYOUT(
       KC_TAB,  DE_Q, DE_W, DE_F, DE_P,   DE_B,                                        DE_J,    DE_L,   DE_U,    DE_Y,   DE_MINS, KC_BSPC,
       KC_ESC,  MY_A, MY_R, MY_S, MY_T,   DE_G,                                        DE_M,    MY_N,   MY_E,    MY_I,   MY_O,    KC_ENT,
       APP_TAB, DE_Z, DE_X, DE_C, DE_D,   DE_V,                                        DE_K,    DE_H,   DE_COMM, DE_DOT, MY_SLSH, KC_RSFT,
-                                 MY_GUI, OSM(MOD_LSFT), OSL(_SYMBOLS), OSL(_SYMBOLS), EXT_SPC, MY_ALT
+                                 MY_GUI, OSM(MOD_LSFT), OSL(_SYM_MAC), OSL(_SYM_MAC), EXT_SPC, MY_ALT
+      ),
+
+  [_COLEMAK_WIN] = LAYOUT(
+      _______, _______, _______, _______, _______, _______,                               _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______,                               _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______,                               _______, _______, _______, _______, _______, _______,
+                                          _______, _______, OSL(_SYM_WIN), OSL(_SYM_WIN), _______, _______
       ),
 
   [_EXTEND] = LAYOUT(
       APP_TAB, XXXXXXX, DE_7,   DE_8,   DE_9,   DE_PLUS,                    KC_MPRV, KC_MNXT, VIM_ALT, KC_VOLD, KC_VOLU, _______,
       XXXXXXX, XXXXXXX, MY_4,   MY_5,   MY_6,   DE_MINS,                    KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, _______,
-      QK_BOOT, XXXXXXX, DE_1,   DE_2,   DE_3,   XXXXXXX,                    XXXXXXX, XXXXXXX, DE_COMM, DE_DOT,  DE_SLSH, KC_MPLY,
+      QK_BOOT, XXXXXXX, DE_1,   DE_2,   DE_3,   SET_MAC,                    SET_WIN, XXXXXXX, DE_COMM, DE_DOT,  DE_SLSH, KC_MPLY,
                                        _______, SFT_ZERO, KC_LALT, _______, _______, _______
       ),
 
-  [_SYMBOLS] = LAYOUT(
-      _______, DE_BSLS, DE_LABK, DE_DQUO, DE_RABK, DE_PLUS,                   DE_CIRC, DE_LBRC, DE_UNDS, DE_RBRC, DE_EURO, _______,
-      _______, DE_EXLM, DE_LPRN, DE_QUOT, DE_RPRN, DE_MINS,                   DE_PERC, DE_LCBR, DE_EQL,  DE_RCBR, DE_PIPE, _______,
-      _______, XXXXXXX, DE_HASH, DE_AT,   DE_DLR,  DE_TILD,                   DE_GRV,  DE_AMPR, DE_ASTR, DE_COLN, DE_QUES, _______,
+  [_SYM_MAC] = LAYOUT(
+      _______, DM_BSLS, DE_LABK, DE_DQUO, DE_RABK, DE_PLUS,                   DE_CIRC, DM_LBRC, DE_UNDS, DM_RBRC, DM_EURO, _______,
+      _______, DE_EXLM, DE_LPRN, DE_QUOT, DE_RPRN, DE_MINS,                   DE_PERC, DM_LCBR, DE_EQL,  DM_RCBR, DM_PIPE, _______,
+      _______, XXXXXXX, DE_HASH, DM_AT,   DE_DLR,  DM_TILD,                   DE_GRV,  DE_AMPR, DE_ASTR, DE_COLN, DE_QUES, _______,
+                                          _______, KC_SPC,  _______, _______, _______, _______
+      ),
+
+  [_SYM_WIN] = LAYOUT(
+      _______, DW_BSLS, DE_LABK, DE_DQUO, DE_RABK, DE_PLUS,                   DE_CIRC, DW_LBRC, DE_UNDS, DW_RBRC, DW_EURO, _______,
+      _______, DE_EXLM, DE_LPRN, DE_QUOT, DE_RPRN, DE_MINS,                   DE_PERC, DW_LCBR, DE_EQL,  DW_RCBR, DW_PIPE, _______,
+      _______, XXXXXXX, DE_HASH, DW_AT,   DE_DLR,  DW_TILD,                   DE_GRV,  DE_AMPR, DE_ASTR, DE_COLN, DE_QUES, _______,
                                           _______, KC_SPC,  _______, _______, _______, _______
       ),
 
