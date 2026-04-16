@@ -185,3 +185,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return true;
   }
 }
+
+bool is_flow_tap_key(uint16_t keycode) {
+    switch (keycode) {
+        case MY_A:
+        case MY_R:
+        case MY_S:
+        case MY_T:
+        case MY_N:
+        case MY_E:
+        case MY_I:
+        case MY_O:
+            return true;
+
+        default:
+            return false;
+    }
+}
