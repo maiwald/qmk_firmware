@@ -115,7 +115,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_COLEMAK_MAC] = LAYOUT(
       KC_TAB,  DE_Q, DE_W, DE_F, DE_P,   DE_B,                                        DE_J,    DE_L,   DE_U,    DE_Y,   DE_MINS, KC_BSPC,
       KC_ESC,  MY_A, MY_R, MY_S, MY_T,   DE_G,                                        DE_M,    MY_N,   MY_E,    MY_I,   MY_O,    KC_ENT,
-      APP_TAB, DE_Z, DE_X, DE_C, DE_D,   DE_V,                                        DE_K,    DE_H,   DE_COMM, DE_DOT, MY_SLSH, KC_RSFT,
+      KC_HYPR, DE_Z, DE_X, DE_C, DE_D,   DE_V,                                        DE_K,    DE_H,   DE_COMM, DE_DOT, MY_SLSH, KC_HYPR,
                                  MY_GUI, OSM(MOD_LSFT), OSL(_SYM_MAC), OSL(_SYM_MAC), EXT_SPC, MY_ALT
       ),
 
