@@ -1,5 +1,6 @@
 """Used by the make system to generate keycodes.h from keycodes_{version}.json
 """
+import hjson
 from milc import cli
 
 from qmk.constants import GPL2_HEADER_C_LIKE, GENERATED_HEADER_C_LIKE
@@ -180,3 +181,32 @@ def generate_keycode_extras(cli):
 
     # Show the results
     dump_lines(cli.args.output, keycodes_h_lines, cli.args.quiet)
+
+def to_key_code_map(aliases):
+    return {v['key']: code for code, v in aliases.items()}
+
+@cli.argument('-o', '--output', arg_only=True, type=normpath, help='File to write to')
+@cli.argument('-q', '--quiet', arg_only=True, action='store_true', help="Quiet mode, only output error messages")
+@cli.subcommand('Generate win/mac german keycodes', hidden=True)
+def generate_german_keycodes(cli):
+    """Generates the german keycodes.
+    """
+    win_codes = to_key_code_map(load_spec('0.0.1', 'german')['aliases'])
+    mac_codes = to_key_code_map(load_spec('0.0.1', 'german_mac_iso')['aliases'])
+
+    keys = set(win_codes) | set(mac_codes)
+    max_width = max(len(k) + 1 for k in keys)
+
+    lines = [GPL2_HEADER_C_LIKE, GENERATED_HEADER_C_LIKE, '#pragma once', '#include "keycodes.h"', '// clang-format off']
+
+    for key in keys:
+        if key in win_codes and key in mac_codes:
+            if win_codes[key] == mac_codes[key]:
+                k = key[3:]
+                lines.append(f"#define DE_{k} {win_codes[key]}")
+            else:
+                k = key[3:]
+                lines.append(f"#define DM_{k} {mac_codes[key]}")
+                lines.append(f"#define DW_{k} {win_codes[key]}")
+
+    dump_lines(cli.args.output, lines, cli.args.quiet)

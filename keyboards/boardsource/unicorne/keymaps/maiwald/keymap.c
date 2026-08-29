@@ -1,0 +1,204 @@
+#include QMK_KEYBOARD_H
+#include "keymap_german_macwin.h"
+
+
+enum layers {
+  _COLEMAK_MAC = 0,
+  _COLEMAK_WIN,
+  _EXTEND,
+  _SYM_MAC,
+  _SYM_WIN,
+  _GERMAN,
+};
+
+enum custom_keycodes {
+  MY_SLSH = SAFE_RANGE,
+};
+
+enum {
+  TD_GUI_ALT,
+  TD_GER_ALT,
+};
+
+enum {
+  SINGLE_TAP = 1,
+  SINGLE_HOLD,
+};
+
+uint8_t cur_dance(tap_dance_state_t *state) {
+  if (state->count == 1) {
+    if (state->pressed) return SINGLE_HOLD;
+    else return SINGLE_TAP;
+  }
+
+  return 8;
+}
+
+// Create an instance of 'tap' for the 'x' tap dance.
+static uint8_t gertap_state = 0;
+
+void gertap_finished(tap_dance_state_t *state, void *user_data) {
+  gertap_state = cur_dance(state);
+  switch (gertap_state) {
+    case SINGLE_TAP:
+      set_oneshot_layer(_GERMAN, ONESHOT_START);
+      clear_oneshot_layer_state(ONESHOT_PRESSED);
+      break;
+    case SINGLE_HOLD:
+      register_code(KC_RALT);
+      break;
+  }
+}
+
+void gertap_reset(tap_dance_state_t *state, void *user_data) {
+  switch (gertap_state) {
+    case SINGLE_TAP:
+      break;
+    case SINGLE_HOLD:
+      unregister_code(KC_RALT);
+      break;
+  }
+  gertap_state = 0;
+}
+
+tap_dance_action_t tap_dance_actions[] = {
+  [TD_GUI_ALT] = ACTION_TAP_DANCE_DOUBLE(KC_LGUI, KC_LALT),
+  [TD_GER_ALT] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, gertap_finished, gertap_reset),
+};
+
+// home row mods
+#define MY_A LCTL_T(DE_A)
+#define MY_R LSFT_T(DE_R)
+#define MY_S LALT_T(DE_S)
+#define MY_T LGUI_T(DE_T)
+#define MY_N RGUI_T(DE_N)
+#define MY_E RALT_T(DE_E)
+#define MY_I RSFT_T(DE_I)
+#define MY_O RCTL_T(DE_O)
+
+// home row mods (extend)
+#define MY_4    LSFT_T(DE_4)
+#define MY_5    LALT_T(DE_5)
+#define MY_6    LGUI_T(DE_6)
+
+#define VIM_ALT C(DE_6)
+#define KC_EUR  S(A(KC_2))
+#define MY_GUI  TD(TD_GUI_ALT)
+#define MY_ALT  TD(TD_GER_ALT)
+#define APP_TAB G(DE_GRV)
+#define MY_SCSH G(S(KC_4))
+
+#define SET_MAC PDF(_COLEMAK_MAC)
+#define SET_WIN PDF(_COLEMAK_WIN)
+
+#define EXT_SPC  LT(_EXTEND, KC_SPC)
+#define SFT_ZERO MT(MOD_LSFT, DE_0)
+
+uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    case EXT_SPC:
+      return 0;
+    default:
+      return QUICK_TAP_TERM;
+  }
+}
+
+const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM =
+    LAYOUT(
+        'L', 'L', 'L', 'L', 'L', 'L',  'R', 'R', 'R', 'R', 'R', 'R',
+        'L', 'L', 'L', 'L', 'L', 'L',  'R', 'R', 'R', 'R', 'R', 'R',
+        'L', 'L', 'L', 'L', 'L', 'L',  'R', 'R', 'R', 'R', 'R', 'R',
+                       '*', '*', '*',  '*', '*', '*'
+    );
+
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+  [_COLEMAK_MAC] = LAYOUT(
+      KC_TAB,  DE_Q, DE_W, DE_F, DE_P,   DE_B,                                        DE_J,    DE_L,   DE_U,    DE_Y,   DE_MINS, KC_BSPC,
+      KC_ESC,  MY_A, MY_R, MY_S, MY_T,   DE_G,                                        DE_M,    MY_N,   MY_E,    MY_I,   MY_O,    KC_ENT,
+      KC_HYPR, DE_Z, DE_X, DE_C, DE_D,   DE_V,                                        DE_K,    DE_H,   DE_COMM, DE_DOT, MY_SLSH, KC_HYPR,
+                                 MY_GUI, OSM(MOD_LSFT), OSL(_SYM_MAC), OSL(_SYM_MAC), EXT_SPC, MY_ALT
+      ),
+
+  [_COLEMAK_WIN] = LAYOUT(
+      _______, _______, _______, _______, _______, _______,                               _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______,                               _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______,                               _______, _______, _______, _______, _______, _______,
+                                          _______, _______, OSL(_SYM_WIN), OSL(_SYM_WIN), _______, _______
+      ),
+
+  [_EXTEND] = LAYOUT(
+      APP_TAB, XXXXXXX, DE_7,   DE_8,   DE_9,   DE_PLUS,                    KC_MPRV, KC_MNXT, VIM_ALT, KC_VOLD, KC_VOLU, _______,
+      XXXXXXX, XXXXXXX, MY_4,   MY_5,   MY_6,   DE_MINS,                    KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, _______,
+      QK_BOOT, XXXXXXX, DE_1,   DE_2,   DE_3,   SET_MAC,                    SET_WIN, XXXXXXX, DE_COMM, DE_DOT,  DE_SLSH, KC_MPLY,
+                                       _______, SFT_ZERO, KC_LALT, _______, _______, _______
+      ),
+
+  [_SYM_MAC] = LAYOUT(
+      _______, DM_BSLS, DE_LABK, DE_DQUO, DE_RABK, DE_PLUS,                   DE_CIRC, DM_LBRC, DE_UNDS, DM_RBRC, DM_EURO, _______,
+      _______, DE_EXLM, DE_LPRN, DE_QUOT, DE_RPRN, DE_MINS,                   DE_PERC, DM_LCBR, DE_EQL,  DM_RCBR, DM_PIPE, _______,
+      _______, XXXXXXX, DE_HASH, DM_AT,   DE_DLR,  DM_TILD,                   DE_GRV,  DE_AMPR, DE_ASTR, DE_COLN, DE_QUES, _______,
+                                          _______, KC_SPC,  _______, _______, _______, _______
+      ),
+
+  [_SYM_WIN] = LAYOUT(
+      _______, DW_BSLS, DE_LABK, DE_DQUO, DE_RABK, DE_PLUS,                   DE_CIRC, DW_LBRC, DE_UNDS, DW_RBRC, DW_EURO, _______,
+      _______, DE_EXLM, DE_LPRN, DE_QUOT, DE_RPRN, DE_MINS,                   DE_PERC, DW_LCBR, DE_EQL,  DW_RCBR, DW_PIPE, _______,
+      _______, XXXXXXX, DE_HASH, DW_AT,   DE_DLR,  DW_TILD,                   DE_GRV,  DE_AMPR, DE_ASTR, DE_COLN, DE_QUES, _______,
+                                          _______, KC_SPC,  _______, _______, _______, _______
+      ),
+
+  [_GERMAN] = LAYOUT(
+      _______, _______, _______, _______, _______, _______,                   _______, _______, DE_UDIA, _______, _______, _______,
+      _______, DE_ADIA, _______, DE_SS,   _______, _______,                   _______, _______, _______, _______, DE_ODIA, _______,
+      _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______,
+                                          _______, _______, _______, _______, _______, _______
+      ),
+};
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  uint16_t one_shot_mod_state = get_oneshot_mods();
+
+  switch (keycode) {
+    case KC_TRNS:
+    case KC_NO:
+      /* Always cancel one-shot layer when another key gets pressed */
+      if (record->event.pressed && is_oneshot_layer_active())
+      clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
+      return true;
+    case MY_SLSH:
+      if (record->event.pressed) {
+        if ((get_mods() | one_shot_mod_state) & MOD_MASK_SHIFT) {
+          tap_code16(DE_QUES);
+        } else {
+          tap_code16(DE_SLSH);
+        }
+      }
+      return false;
+    case KC_ESC:
+      if (one_shot_mod_state) {
+        clear_oneshot_mods();
+        return false;
+      } else {
+        return true;
+      }
+    default:
+      return true;
+  }
+}
+
+bool is_flow_tap_key(uint16_t keycode) {
+    switch (keycode) {
+        case MY_A:
+        case MY_R:
+        case MY_S:
+        case MY_T:
+        case MY_N:
+        case MY_E:
+        case MY_I:
+        case MY_O:
+            return true;
+
+        default:
+            return false;
+    }
+}
